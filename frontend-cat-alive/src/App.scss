@@ -252,12 +252,46 @@ main {
         font-size: 28px;
       }
       p {
-        font-family: "Helvetica Neue";
-        font-size: 16;
-        line-height: 28px;
-        font-weight: 400;
+        font-family: 'Happy Monkey', cursive;
+        font-size: 26;
+        line-height: 35px;
+        font-weight: 600;
         width: 800px;
       }
+    }
+  }
+}
+
+.search-container {
+  margin: 24px;
+  margin-left: 570px;
+  margin-top: -350px;
+  .input-submit {
+    height: 88px;
+    padding: 0 64px;
+    width: 200px;
+    border-radius: 50px 20px;
+    border: none;
+    font-size: 14px; 
+
+    outline: none;
+    color: black;
+    &::placeholder {
+      color: grey;
+    }
+  }
+  .input-text {
+    height: 88px;
+    padding: 0 64px;
+    width: 700px;
+    border-radius: 50px 20px;
+    border: none;
+    font-size: 14px; 
+
+    outline: none;
+    color: black;
+    &::placeholder {
+      color: grey;
     }
   }
 }
