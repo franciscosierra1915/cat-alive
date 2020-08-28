@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import CatCard from './CatCard'
+import RecipeReviewCard from './RecipeReviewCard'
 
 export default class CatList extends Component {
 
     render() {
         return(
             <div>
-                {this.props.cats ? this.props.cats.map(cat => <CatCard cat={cat} key={cat.id}/>) : null}
+                {this.props.cats.map(cat => <RecipeReviewCard cat={cat} key={cat.id}/>)}
             </div>
         )
     }
