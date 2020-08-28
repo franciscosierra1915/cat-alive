@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./CatList.scss";
+
 import { useHistory } from "react-router";
 import noPhoto from '../images/no-photo-available.jpeg';
+import { motion, useViewportScroll, useTransform } from "framer-motion";
 
 import useWindowSize from "../hooks/useWindowSize";
+
+const transition = { duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
 
 function CatList(props) {
   let history = useHistory();
@@ -60,19 +64,32 @@ function CatList(props) {
     scrollContainer.current.style.transform = `translate3d(0, -${data.rounded}px, 0) skewY(${skew}deg)`;
 
     //loop vai raf
-    requestAnimationFrame(() => skewScrolling());
+    requestAnimationFrame(() => {
+      if (scrollContainer === true) {
+        skewScrolling()
+      } else {
+        return
+      }
+    });
   };
   
   return (
-    <div ref={CatList} className="CatList">
-      <div ref={scrollContainer}>
-        {props.cats ? props.cats.map((cat, index) => (
-            <div key={index} className="img-container">
-             <img src={cat.photos.length != 0 ? cat.photos[0].full : noPhoto} alt={`cat ${index}`}/>
-            </div>
-        )) : null}
+    <motion.div
+    className='single'
+    initial='initial'
+    animate='animate'
+    exit={{ opacity: 0 }}
+    transition={transition}>
+      <div ref={CatList} className="CatList">
+        <div ref={scrollContainer}>
+          {props.cats ? props.cats.map((cat, index) => (
+              <div key={index} className="img-container">
+              <img src={cat.photos.length != 0 ? cat.photos[0].full : noPhoto} alt={`cat ${index}`} onClick={() => props.redirectHome()}/>
+              </div>
+          )) : null}
+        </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

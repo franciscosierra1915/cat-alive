@@ -68,7 +68,7 @@ function App() {
               <Switch location={location} key={location.pathname}>
                 <Route exact path='/' render={() => <Home imageDetails={imageDetails} />}/>
                 <Route exact path='/cat-alive' render={() => <Model imageDetails={imageDetails} getZip={e => getZip(e)}/>}/>
-                <Route exact path='/cat-list' render={() => <CatList cats={cats}/>}/>
+                <Route exact path='/cat-list' render={() => <CatList cats={cats} redirectHome={redirectHome}/>}/>
               </Switch>
             </AnimatePresence>
           )}
