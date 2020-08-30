@@ -111,6 +111,7 @@ header {
     .row {
       height: 128px;
       .logo {
+        cursor: url(./images/cursor.png), auto;
         .logo-img {
           top: 25px;
           left: 310px;
@@ -120,7 +121,7 @@ header {
 
       }
       .menu {
-        cursor: pointer;
+        cursor: url(./images/cursor.png), auto;
         font-family: 'Happy Monkey', cursive;
         border-radius: 100%;
         border: 1px solid $black;
@@ -157,6 +158,7 @@ main {
           }
         }
         .information {
+          cursor: url(./images/cursor.png), auto;
           position: absolute;
           width: 100%;
           display: flex;
@@ -185,6 +187,7 @@ main {
       .top {
         padding-bottom: 40px;
         .details {
+          cursor: url(./images/cursor.png), auto;
           display: flex;
           align-items: center;
           justify-content: space-between;

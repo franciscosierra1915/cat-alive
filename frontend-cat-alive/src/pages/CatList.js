@@ -29,9 +29,7 @@ function CatList(props) {
   };
 
   // Run scrollrender once page is loaded.
-  useEffect(() => {
-    requestAnimationFrame(() => skewScrolling());
-  }, []);
+  useEffect(() => {requestAnimationFrame(() => skewScrolling())}, []);
 
   //set the height of the body.
   useEffect(() => {
@@ -47,7 +45,10 @@ function CatList(props) {
 
   // Scrolling
   const skewScrolling = () => {
-    //Set Current to the scroll position amount
+    if (scrollContainer.current === null) {
+      cancelAnimationFrame(() => skewScrolling())
+    } else {
+          //Set Current to the scroll position amount
     data.current = window.scrollY;
     // Set Previous to the scroll previous position
     data.previous += (data.current - data.previous) * data.ease;
@@ -64,13 +65,8 @@ function CatList(props) {
     scrollContainer.current.style.transform = `translate3d(0, -${data.rounded}px, 0) skewY(${skew}deg)`;
 
     //loop vai raf
-    requestAnimationFrame(() => {
-      if (scrollContainer === true) {
-        skewScrolling()
-      } else {
-        return
-      }
-    });
+    requestAnimationFrame(() => {skewScrolling()});
+    }
   };
   
   return (
@@ -80,15 +76,22 @@ function CatList(props) {
     animate='animate'
     exit={{ opacity: 0 }}
     transition={transition}>
-      <div ref={CatList} className="CatList">
-        <div ref={scrollContainer}>
+      <motion.div
+      exit={{ opacity: 0 }}
+      transition={transition}
+       ref={CatList} 
+       className="CatList">
+        <motion.div 
+        exit={{ opacity: 0 }}
+        transition={transition}
+        ref={scrollContainer}>
           {props.cats ? props.cats.map((cat, index) => (
               <div key={index} className="img-container">
               <img src={cat.photos.length != 0 ? cat.photos[0].full : noPhoto} alt={`cat ${index}`} onClick={() => props.redirectHome()}/>
               </div>
           )) : null}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </motion.div>
   );
 }
