@@ -7,6 +7,7 @@ import { useHistory } from "react-router";
 import Home from "./pages/home";
 import Model from "./pages/model";
 import CatList from './pages/CatList'
+import SingleCat from './pages/SingleCat'
 //components
 import Header from "./components/header";
 //Styles
@@ -18,6 +19,7 @@ function App() {
   const [token, setToken] = useState('');
   const [cats, setCats] = useState('');
   const [location, setLocation] = useState('');
+  const [clickedCat, setClickecCat] = useState('')
 
   useEffect(() => {
     async function fetchToken() {
@@ -58,6 +60,12 @@ function App() {
     history.push('/')
   }
 
+  const displaySingleCat = (clickedCat) => {
+    setClickecCat(clickedCat);
+    history.push('/single-cat')
+  }
+
+
 
     return (
       <div>
@@ -68,7 +76,8 @@ function App() {
               <Switch location={location} key={location.pathname}>
                 <Route exact path='/' render={() => <Home imageDetails={imageDetails} />}/>
                 <Route exact path='/cat-alive' render={() => <Model imageDetails={imageDetails} getZip={e => getZip(e)}/>}/>
-                <Route exact path='/cat-list' render={() => <CatList cats={cats} redirectHome={redirectHome}/>}/>
+                <Route exact path='/cat-list' render={() => <CatList cats={cats} redirectHome={redirectHome} displaySingleCat={displaySingleCat}/>}/>
+                <Route exact path='/single-cat' render={() => <SingleCat cat={clickedCat}/>}/>
               </Switch>
             </AnimatePresence>
           )}

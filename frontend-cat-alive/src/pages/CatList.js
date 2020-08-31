@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./CatList.scss";
-import SingleCat from '../components/SingleCat'
+import { Link } from "react-router-dom";
 
-import { useHistory } from "react-router";
 import noPhoto from '../images/no-photo-available.jpeg';
 import { motion, useViewportScroll, useTransform } from "framer-motion";
 
@@ -11,8 +10,6 @@ import useWindowSize from "../hooks/useWindowSize";
 const transition = { duration: 1.4, ease: [0.6, 0.01, -0.05, 0.9] };
 
 function CatList(props) {
-  let history = useHistory();
-
 
   //Hook to grab window size
   const size = useWindowSize();
@@ -69,7 +66,7 @@ function CatList(props) {
     requestAnimationFrame(() => {skewScrolling()});
     }
   };
-  
+
   return (
     <motion.div
     className='single'
@@ -87,10 +84,14 @@ function CatList(props) {
         transition={transition}
         ref={scrollContainer}>
           {props.cats ? props.cats.map((cat, index) => (
+            <>
               <div key={index} className="img-container">
-                <SingleCat/>
-              <img src={cat.photos.length != 0 ? cat.photos[0].full : noPhoto} alt={`cat ${index}`} onClick={() => props.redirectHome()}/>
+              <img src={cat.photos.length !== 0 ? cat.photos[0].full : noPhoto} alt={`cat ${index}`}/>
               </div>
+              <h2 onClick={() => props.displaySingleCat(cat)}>
+              {cat.name}
+              </h2>
+            </>
           )) : null}
         </motion.div>
       </motion.div>
