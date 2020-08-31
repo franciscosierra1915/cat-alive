@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./CatList.scss";
+import SingleCat from '../components/SingleCat'
 
 import { useHistory } from "react-router";
 import noPhoto from '../images/no-photo-available.jpeg';
@@ -87,6 +88,7 @@ function CatList(props) {
         ref={scrollContainer}>
           {props.cats ? props.cats.map((cat, index) => (
               <div key={index} className="img-container">
+                <SingleCat/>
               <img src={cat.photos.length != 0 ? cat.photos[0].full : noPhoto} alt={`cat ${index}`} onClick={() => props.redirectHome()}/>
               </div>
           )) : null}
