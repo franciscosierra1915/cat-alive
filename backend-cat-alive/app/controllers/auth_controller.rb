@@ -6,7 +6,7 @@ class AuthController < ApplicationController
         if user && user.authenticate(params[:password])
             session[:user_id] = user.id
 
-            render json: user, include: [:lists, :videos]
+            render json: user, include: :cats
         else
             render json: {succes: false}
         end
@@ -16,7 +16,7 @@ class AuthController < ApplicationController
 
         if session[:user_id] 
             user = User.find(session[:user_id])
-            render json: user, include: [:lists, :videos]
+            render json: user, include: :cats
         else
             user = nil
             render json: user

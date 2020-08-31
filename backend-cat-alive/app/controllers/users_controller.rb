@@ -4,21 +4,21 @@ class UsersController < ApplicationController
 
     def index
         users = User.all
-        render json: users
+        render json: users, include: :cats
     end
 
     def show
-        render json: user
+        render json: user, include: :cats
     end
 
     def create 
         user = User.create(user_params)
-        render json: user
+        render json: user, include: :cats
     end
 
     def update
         user.update(user_params)
-        render json: user
+        render json: user, include: :cats
     end
 
     def destroy
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     private 
 
     def user_params 
-        params.require(:user).permit()
+        params.require(:user).permit(:name, :email, :password, :foster, :adopter)
     end
 
     def find_user

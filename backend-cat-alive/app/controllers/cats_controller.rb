@@ -4,21 +4,21 @@ class CatsController < ApplicationController
 
     def index
         cats = Cat.all
-        render json: cats
+        render json: cats, include: [:user, :shelter]
     end
 
     def show
-        render json: cat
+        render json: cat, include: [:user, :shelter]
     end
 
     def create 
         cat = Cat.create(cat_params)
-        render json: cat
+        render json: cat, include: [:user, :shelter]
     end
 
     def update
         cat.update(cat_params)
-        render json: cat
+        render json: cat, include: [:user, :shelter]
     end
 
     def destroy
@@ -28,7 +28,7 @@ class CatsController < ApplicationController
     private 
 
     def cat_params 
-        params.require(:cat).permit()
+        params.require(:cat).permit(:petfinder_id, :name, :age, :description, :status, :size, :gender, :petfinder_url, :shelter_id, :user_id, :vet_id)
     end
 
     def find_cat

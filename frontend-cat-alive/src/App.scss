@@ -140,6 +140,47 @@ header {
   }
 }
 
+.login-form {
+  position: absolute;
+  margin-left: 800px;
+  margin-top: -1185px;
+  align-items: center;
+  #title-login {
+    font-size: 2rem;
+  }
+  input {
+    margin: 5px;
+    height: 58px;
+    padding: 0 64px;
+    width: 300px;
+    border-radius: 50px 20px;
+    border: none;
+    font-size: 14px; 
+
+    outline: none;
+    color: black;
+    &::placeholder {
+      color: grey;
+    }
+  }
+  button {
+    margin: 10px;
+    height: 88px;
+    padding: 0 64px;
+    width: 200px;
+    border-radius: 50px 20px;
+    border: none;
+    font-size: 14px; 
+
+    outline: none;
+    color: black;
+    &::placeholder {
+      color: grey;
+    }
+  }
+}
+
+
 main {
   .container {
     position: relative;

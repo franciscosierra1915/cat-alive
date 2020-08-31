@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import ProgressiveImage from "react-progressive-image";
+import Login from '../components/login'
 
 const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
 
-const Home = ({ imageDetails, image }) => (
+
+
+const Home = ({ imageDetails, image, currentUser, getSignIn, logout }) => {
+
+  return(
   <>
     <main>
       <motion.div 
@@ -45,7 +50,7 @@ const Home = ({ imageDetails, image }) => (
               exit={{ opacity: 0 }}
               transition={transition}
               className='information'>
-              <div className='title'>Adopt</div>
+              <div className='title'>{<Login currentUser={currentUser} getSignIn={getSignIn} logout={logout}/>}</div>
               <div className='location'>
                 <span>Foster</span>
                 <span>Donate</span>
@@ -57,5 +62,5 @@ const Home = ({ imageDetails, image }) => (
     </main>
   </>
 );
-
+}
 export default Home;

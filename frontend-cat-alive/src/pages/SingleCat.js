@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import noPhoto from '../images/no-photo-available.jpeg';
+import noPhoto from '../images/no-photo-available.png';
 
 let easing = [0.6, -0.05, 0.01, 0.99];
 
@@ -83,7 +83,7 @@ const SingleCat = props => (
               <span className='price'>{props.cat.status ? `Status: ${props.cat.status}` : null}</span>
             </motion.div>
             <motion.div variants={fadeInUp} className='btn-row'>
-              <button className='add-to-cart'>Adopt</button>
+              <button className='add-to-cart' onClick={() => props.adoptCat(props.cat)}>Adopt</button>
               <button className='subscribe'>Foster</button>
             </motion.div>
           </motion.div>
