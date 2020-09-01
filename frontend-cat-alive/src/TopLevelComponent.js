@@ -2,7 +2,7 @@ import React from "react";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 
-const App2 = () => {
+const TopLevelComponent = () => {
   return (
       <Router>
           <App/>
@@ -10,4 +10,4 @@ const App2 = () => {
   );
 };
 
-export default App2;
+export default TopLevelComponent;

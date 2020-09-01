@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import noPhoto from '../images/no-photo-available.png';
+import LoginForAccess from '../components/login-for-access';
 
 let easing = [0.6, -0.05, 0.01, 0.99];
 
@@ -29,7 +30,16 @@ const fadeInUp = {
   }
 };
 
-const SingleCat = props => (
+const SingleCat = ({currentUser, cat, adoptCat, getSignIn, logout}) => {
+
+  const [thisCat, setCat] = useState('');
+
+  useEffect(() => {
+    setCat(cat)
+    console.log(thisCat)
+  }, [])
+
+  return(
   <motion.div initial='initial' animate='animate' exit={{ opacity: 0 }}>
     <div className='fullscreen'>
       <div className='product'>
@@ -37,11 +47,11 @@ const SingleCat = props => (
           className='single-cat-img-div'
           animate={{ opacity: 1 }}
           initial={{ opacity: 0 }}>
-            {props.cat.photos.length !== 0 ? 
+            {cat.photos.length !== 0 ? 
               <motion.img
               className='single-cat-img-tag'
-              key={props.cat.photos[0].full}
-              src={props.cat.photos[0].full}
+              key={cat.photos[0].full}
+              src={cat.photos[0].full}
               animate={{ x: 0, opacity: 1 }}
               initial={{ x: 200, opacity: 0 }}
               exit={{ opacity: 0 }}
@@ -62,17 +72,17 @@ const SingleCat = props => (
           <motion.div variants={stagger} className='inner'>
             <Link to='/cat-list'>
               <motion.div variants={fadeInUp}>
-                <a className='go-back'>Back to list</a>
+                <div className='go-back'>Back to list</div>
               </motion.div>
             </Link>
             <motion.div variants={fadeInUp}>
-              <span className='category'>{props.cat.age ? `Age: ${props.cat.age}` : null}</span>
+              <span className='category'>{cat.age ? `Age: ${cat.age}` : null}</span>
             </motion.div>
-            <motion.h1 className='single-cat-name' variants={fadeInUp}>{props.cat.name}</motion.h1>
-            <motion.p variants={fadeInUp}>{props.cat.description ? props.cat.description : `No description` }</motion.p>
+            <motion.h1 className='single-cat-name' variants={fadeInUp}>{cat.name}</motion.h1>
+            <motion.p variants={fadeInUp}>{cat.description ? cat.description : `No description` }</motion.p>
             <motion.div variants={fadeInUp} className='additonals'>
-              <span>{props.cat.gender ? `Gender: ${props.cat.gender}` : null}</span>
-              <span>{props.cat.size ? `Size: ${props.cat.size}` : null}</span>
+              <span>{cat.gender ? `Gender: ${cat.gender}` : null}</span>
+              <span>{cat.size ? `Size: ${cat.size}` : null}</span>
             </motion.div>
             <motion.div variants={fadeInUp} className='qty-price'>
               {/* <div className='qty'>
@@ -80,10 +90,10 @@ const SingleCat = props => (
                 <div className='amount'>1</div>
                 <div className='add'>+</div>
               </div> */}
-              <span className='price'>{props.cat.status ? `Status: ${props.cat.status}` : null}</span>
+              <span className='price'>{cat.status ? `Status: ${cat.status}` : null}</span>
             </motion.div>
             <motion.div variants={fadeInUp} className='btn-row'>
-              <button className='add-to-cart' onClick={() => props.adoptCat(props.cat)}>Adopt</button>
+              <button className='add-to-cart' onClick={() => adoptCat(cat)}>{currentUser ? `Adopt` : <LoginForAccess getSignIn={getSignIn} currentUser={currentUser} logout={logout}/>}</button>
               <button className='subscribe'>Foster</button>
             </motion.div>
           </motion.div>
@@ -92,6 +102,6 @@ const SingleCat = props => (
     </div>
   </motion.div>
 );
-
+}
 
 export default SingleCat;

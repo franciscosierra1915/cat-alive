@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import ProgressiveImage from "react-progressive-image";
 import Login from '../components/login'
+import LoginFoster from '../components/login-foster'
 
 const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
 
@@ -52,7 +53,7 @@ const Home = ({ imageDetails, image, currentUser, getSignIn, logout }) => {
               className='information'>
               <div className='title'>{<Login currentUser={currentUser} getSignIn={getSignIn} logout={logout}/>}</div>
               <div className='location'>
-                <span>Foster</span>
+                <span>{<LoginFoster currentUser={currentUser} getSignIn={getSignIn} logout={logout}/>}</span>
                 <span>Donate</span>
               </div>
             </motion.div>

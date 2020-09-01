@@ -1,18 +1,19 @@
 import React from 'react'
-import LoginLogo from '../images/login.png'
+import LoginLogo from '../images/sign-in-for-access.png'
 import { Button, Header, Image, Modal } from 'semantic-ui-react';
 import FadeIn from 'react-fade-in';
 
 
-function ModalExampleModal({ getSignIn, currentUser, logout }) {
+function LoginForAcces({ getSignIn, currentUser, logout }) {
   const [open, setOpen] = React.useState(false)
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    let form = e.currentTarget
-    getSignIn(e)
-    form.reset()
-    setOpen(false)
+    // e.preventDefault()
+    // let form = e.currentTarget
+    // getSignIn(e)
+    // form.reset()
+    // setOpen(false)
+    console.log('whats going on')
   }
 
   const handleLogOut= () => (
@@ -29,14 +30,14 @@ function ModalExampleModal({ getSignIn, currentUser, logout }) {
 
   return (
     <Modal
-    className='login-form'
+    className='login-for-acces'
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<div className='title'>Adopt</div>}
+      trigger={<div>Adopt</div>}
     >
       <FadeIn>
-      <Modal.Header id='title-login'>Login</Modal.Header>
+      <Modal.Header id='title-login'>Please Sign In</Modal.Header>
       <Modal.Content image>
         <Image size='medium' src={LoginLogo} wrapped />
         <form onSubmit={handleSubmit}>
@@ -73,4 +74,4 @@ function ModalExampleModal({ getSignIn, currentUser, logout }) {
   )
 }
 
-export default ModalExampleModal
+export default LoginForAcces

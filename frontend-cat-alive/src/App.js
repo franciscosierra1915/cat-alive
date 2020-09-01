@@ -12,28 +12,14 @@ import Header from "./components/header";
 //Styles
 import "./App.scss";
 
-let sameUser
-
 function App() {
   let history = useHistory();
   
   const [token, setToken] = useState('');
   const [cats, setCats] = useState('');
   const [location, setLocation] = useState('');
-  const [clickedCat, setClickecCat] = useState('')
-  const [currentUser, setCurrentUser] = useState('');
-
-  useEffect(() => {
-    let sameUser
-    if (currentUser !== sameUser) {
-    fetch('http://localhost:3000/currentuser', {
-      credentials: 'include'
-    })
-    .then(res => res.json())
-    .then(user => {
-      sameUser = user
-      setCurrentUser(user)})}
-  }, []);
+  const [clickedSingleCat, setClickedCat] = useState('')
+  const [currentUser, setCurrentUser] = useState(null);
 
   const signIn = (e) => {
     let objectConfig = {
@@ -93,7 +79,7 @@ function App() {
   }
 
   const displaySingleCat = (clickedCat) => {
-    setClickecCat(clickedCat);
+    setClickedCat(clickedCat);
     history.push('/single-cat')
   }
 
@@ -123,7 +109,7 @@ function App() {
     .then(res => res.json())
     .then(newAdoptedCat => console.log(newAdoptedCat))
     } else {
-      console.log('not here yet')
+      console.log('Sorry, please sign in')
     }
   }
 
@@ -137,7 +123,7 @@ function App() {
                 <Route exact path='/' render={() => <Home imageDetails={imageDetails} currentUser={currentUser} getSignIn={e => signIn(e)} logout={() => setCurrentUser(null)}/>}/>
                 <Route exact path='/cat-alive' render={() => <Model currentUser={currentUser} imageDetails={imageDetails} getZip={e => getZip(e)}/>}/>
                 <Route exact path='/cat-list' render={() => <CatList currentUser={currentUser} cats={cats} redirectHome={redirectHome} displaySingleCat={displaySingleCat}/>}/>
-                <Route exact path='/single-cat' render={() => <SingleCat currentUser={currentUser} cat={clickedCat} adoptCat={adoptCat}/>}/>
+                <Route exact path='/single-cat' render={() => <SingleCat currentUser={currentUser} cat={clickedSingleCat} adoptCat={adoptCat}/>} getSignIn={e => signIn(e)} logout={() => setCurrentUser(null)}/>
               </Switch>
             </AnimatePresence>
           )}

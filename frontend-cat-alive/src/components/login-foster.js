@@ -1,5 +1,5 @@
 import React from 'react'
-import LoginLogo from '../images/login.png'
+import LoginLogo from '../images/login-foster.png'
 import { Button, Header, Image, Modal } from 'semantic-ui-react';
 import FadeIn from 'react-fade-in';
 
@@ -33,7 +33,7 @@ function ModalExampleModal({ getSignIn, currentUser, logout }) {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<div className='title'>Adopt</div>}
+      trigger={<span>Foster</span>}
     >
       <FadeIn>
       <Modal.Header id='title-login'>Login</Modal.Header>
