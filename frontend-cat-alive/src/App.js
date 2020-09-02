@@ -4,9 +4,11 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useHistory } from "react-router";
 //Pages
 import Home from "./pages/home";
+import Profile from "./pages/profile";
 import Model from "./pages/model";
-import CatList from './pages/CatList'
-import SingleCat from './pages/SingleCat'
+import CatList from './pages/CatList';
+import MyCatList from './pages/MyCatList';
+import SingleCat from './pages/SingleCat';
 //components
 import Header from "./components/header";
 //Styles
@@ -18,7 +20,8 @@ function App() {
   const [token, setToken] = useState('');
   const [cats, setCats] = useState('');
   const [location, setLocation] = useState('');
-  const [clickedSingleCat, setClickedCat] = useState('')
+  const [clickedSingleCat, setClickedCat] = useState('');
+  const [userCats, setUserCats] = useState('')
   const [currentUser, setCurrentUser] = useState(null);
 
   const signIn = (e) => {
@@ -40,6 +43,26 @@ function App() {
       setCurrentUser(user)
     })
   }
+
+  useEffect(() => {
+    fetch('http://localhost:3000/currentuser', {
+      credentials: 'include'
+    })
+    .then(res => res.json())
+    .then(user => {
+      setCurrentUser(user)
+    })
+  }, []);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/currentuser', {
+      credentials: 'include'
+    })
+    .then(res => res.json())
+    .then(user => {
+      setUserCats(user.cats)
+    })
+  }, [currentUser]);
 
  
   useEffect(() => {
@@ -107,7 +130,7 @@ function App() {
     }
     fetch('http://localhost:3000/cats', objectConfig)
     .then(res => res.json())
-    .then(newAdoptedCat => console.log(newAdoptedCat))
+    .then(newAdoptedCat => setUserCats(userCats => [...userCats, newAdoptedCat]))
     } else {
       console.log('Sorry, please sign in')
     }
@@ -115,15 +138,17 @@ function App() {
 
     return (
       <div>
-        <Header redirectHome={redirectHome}/>
+        <Header redirectHome={redirectHome} currentUser={currentUser} getSignIn={e => signIn(e)} logout={() => setCurrentUser(null)}/>
         <Route
           render={({ location }) => (
             <AnimatePresence initial={false} exitBeforeEnter>
               <Switch location={location} key={location.pathname}>
                 <Route exact path='/' render={() => <Home imageDetails={imageDetails} currentUser={currentUser} getSignIn={e => signIn(e)} logout={() => setCurrentUser(null)}/>}/>
+                <Route exact path='/profile' render={() => <Profile imageDetails={imageDetails}/>}/>
                 <Route exact path='/cat-alive' render={() => <Model currentUser={currentUser} imageDetails={imageDetails} getZip={e => getZip(e)}/>}/>
                 <Route exact path='/cat-list' render={() => <CatList currentUser={currentUser} cats={cats} redirectHome={redirectHome} displaySingleCat={displaySingleCat}/>}/>
-                <Route exact path='/single-cat' render={() => <SingleCat currentUser={currentUser} cat={clickedSingleCat} adoptCat={adoptCat}/>} getSignIn={e => signIn(e)} logout={() => setCurrentUser(null)}/>
+                <Route exact path='/my-cat-list' render={() => <MyCatList currentUser={currentUser} cats={userCats ? userCats : null} redirectHome={redirectHome} displaySingleCat={displaySingleCat}/>}/>
+                <Route exact path='/single-cat' render={() => <SingleCat currentUser={currentUser} cat={clickedSingleCat} adoptCat={adoptCat} getSignIn={e => signIn(e)} logout={() => setCurrentUser(null)}/>}/>
               </Switch>
             </AnimatePresence>
           )}

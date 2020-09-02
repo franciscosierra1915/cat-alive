@@ -1,5 +1,6 @@
 import React from "react";
 import logo from '../images/logo-cat-alive.png';
+import MenuButton from './menu'
 const Header = (props) => {
   return (
     <header>
@@ -8,7 +9,7 @@ const Header = (props) => {
           <div className='logo'>
           <img className='logo-img' src={logo} alt="logo" onClick={() => props.redirectHome()}/>
           </div>
-          <div className='menu'>Menu</div>
+          <div className='menu'>{<MenuButton getSignIn={props.getSignIn} logout={props.logout} currentUser={props.currentUser}/>}</div>
         </div>
       </div>
     </header>

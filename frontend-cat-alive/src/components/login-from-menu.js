@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link } from "react-router-dom";
-import LoginLogo from '../images/login.png'
+import LoginLogo from '../images/login-menu.png'
 import { Button, Header, Image, Modal } from 'semantic-ui-react';
 import FadeIn from 'react-fade-in';
 
@@ -24,8 +23,7 @@ function ModalExampleModal({ getSignIn, currentUser, logout }) {
             'Content-Type': 'application/json'
         }
     })
-    .then(() => logout()),
-    setOpen(false)
+    .then(() => logout())
 )
 
 
@@ -35,10 +33,10 @@ function ModalExampleModal({ getSignIn, currentUser, logout }) {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<div className='title'>Adopt</div>}
+      trigger={<div className='title'>Login</div>}
     >
       <FadeIn>
-      <Modal.Header id='title-login'>Adopter Login</Modal.Header>
+      <Modal.Header id='title-login'>Login</Modal.Header>
       <Modal.Content image>
         <Image size='medium' src={LoginLogo} wrapped />
         <form onSubmit={handleSubmit}>
@@ -61,7 +59,6 @@ function ModalExampleModal({ getSignIn, currentUser, logout }) {
         positive
         />
         :
-        <Link to={`/cat-alive`}>
         <Button
         content="See new cats"
         labelPosition='right'
@@ -69,7 +66,6 @@ function ModalExampleModal({ getSignIn, currentUser, logout }) {
         onClick={() => setOpen(false)}
         positive
         />
-        </Link>
         }
       </Modal.Actions>
       </FadeIn>

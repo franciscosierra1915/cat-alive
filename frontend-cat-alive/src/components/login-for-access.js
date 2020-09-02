@@ -1,5 +1,6 @@
-import React from 'react'
-import LoginLogo from '../images/sign-in-for-access.png'
+import React from 'react';
+import { Link } from "react-router-dom";
+import LoginLogo from '../images/sign-in-for-access.png';
 import { Button, Header, Image, Modal } from 'semantic-ui-react';
 import FadeIn from 'react-fade-in';
 
@@ -8,11 +9,11 @@ function LoginForAcces({ getSignIn, currentUser, logout }) {
   const [open, setOpen] = React.useState(false)
 
   const handleSubmit = (e) => {
-    // e.preventDefault()
-    // let form = e.currentTarget
-    // getSignIn(e)
-    // form.reset()
-    // setOpen(false)
+    e.preventDefault()
+    let form = e.currentTarget
+    getSignIn(e)
+    form.reset()
+    setOpen(false)
     console.log('whats going on')
   }
 
@@ -49,7 +50,7 @@ function LoginForAcces({ getSignIn, currentUser, logout }) {
       </Modal.Content>
       <Modal.Actions>
         <Button color='black' onClick={() => setOpen(false)}>
-          See my cats
+          Go back
         </Button>
         {currentUser ?
         <Button
@@ -60,6 +61,7 @@ function LoginForAcces({ getSignIn, currentUser, logout }) {
         positive
         />
         :
+        <Link to={`/cat-alive`}>
         <Button
         content="See new cats"
         labelPosition='right'
@@ -67,6 +69,7 @@ function LoginForAcces({ getSignIn, currentUser, logout }) {
         onClick={() => setOpen(false)}
         positive
         />
+        </Link>
         }
       </Modal.Actions>
       </FadeIn>

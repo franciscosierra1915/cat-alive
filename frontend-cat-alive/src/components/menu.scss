@@ -1,0 +1,95 @@
+.menu-button {
+position: relative;
+margin-left: -18px;
+margin-top: -10px;
+
+// &.on span{
+//     background: transparent;
+// }
+// &.on span:before {
+//     transform: rotate(45deg) translate(5px, 5px);
+// }
+// &.on span:after {
+//     transform: rotate(-45deg) translate(7px, -8px);
+// }
+&.on .menu-button--list {
+    opacity: 1;
+}
+&--toggle {
+    display: block;
+    position: relative;
+    width: 28px;
+    height: 30px;
+    margin: 30px auto 10px;
+}
+
+// &--toggle span, 
+// &--toggle span:before, 
+// &--toggle span:after {
+//     content: "";
+//     position: absolute;
+//     left: 0;
+//     top: 10px;
+//     width: 100%;
+//     height: 5px;
+//     background: #888;
+//     border-radius: 2px;
+//     transition: all 0.3s;
+// }
+// &--toggle span:before {
+//     top: -9px;
+// }
+// &--toggle span:after {
+//     top: 9px;
+// }
+// &--toggle span {
+//     display: block;
+//     position: relative;
+// }
+
+&--list {
+    position: absolute;
+    width: 200px;
+    top: 70px;
+    left: 10px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    background: rgba(255, 255, 255, 0.838);
+    border-radius: 15px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+&--list:before {
+    position: absolute;
+    top: -19px;
+    left: 5px;
+    content: '';
+    display: block;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 25px solid rgba(255, 255, 255, 0.783);
+}  
+&--list li {
+    display: block;
+    width: 100%;
+    min-width: 40px;
+    padding: 25px 20px;
+    text-align: left;
+    list-style: none;
+    border-bottom: 2px solid #eee;
+}
+
+
+}
+.menu-button--toggle:hover {
+    color: white;
+}
+
+.menu-item {
+    color: #21496c;
+}
+
+.menu-item:hover {
+    color: rgb(221, 194, 58);
+}

@@ -111,7 +111,7 @@ header {
     .row {
       height: 128px;
       .logo {
-        cursor: url(./images/cursor.png), auto;
+        cursor: pointer;
         .logo-img {
           top: 25px;
           left: 310px;
@@ -121,7 +121,7 @@ header {
 
       }
       .menu {
-        cursor: url(./images/cursor.png), auto;
+        cursor: pointer;
         font-family: 'Happy Monkey', cursive;
         border-radius: 100%;
         border: 1px solid $black;
@@ -132,7 +132,7 @@ header {
         justify-content: center;
         transition: 0.3s ease-in-out;
         &:hover {
-          color: $white;
+          // color: $white;
           background: #feca00;
         }
       }
@@ -240,7 +240,7 @@ main {
           }
         }
         .information {
-          cursor: url(./images/cursor.png), auto;
+          cursor: pointer;
           position: absolute;
           width: 100%;
           display: flex;
@@ -269,7 +269,7 @@ main {
       .top {
         padding-bottom: 40px;
         .details {
-          cursor: url(./images/cursor.png), auto;
+          cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -411,7 +411,7 @@ main {
         width: 780px;
         position: relative;
         .go-back {
-          cursor: url(./images/cursor.png), auto;
+          cursor: pointer;
           color: #282828;
           text-decoration: none;
           text-align: left;
@@ -470,7 +470,7 @@ main {
             }
             .add {
               border: 1px solid #282828;
-              cursor: url(./images/cursor.png), auto;
+              cursor: pointer;
             }
             .minus {
               margin-left: 0;
@@ -492,7 +492,7 @@ main {
           display: flex;
           align-items: center;
           button {
-            cursor: url(./images/cursor.png), auto;
+            cursor: pointer;
             border: none;
             border-radius: 8px;
             height: 48px;

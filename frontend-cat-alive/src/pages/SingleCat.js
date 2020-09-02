@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import noPhoto from '../images/no-photo-available.png';
+import noPhoto from '../images/no-photo-available-small.png';
 import LoginForAccess from '../components/login-for-access';
 
 let easing = [0.6, -0.05, 0.01, 0.99];
@@ -31,13 +31,6 @@ const fadeInUp = {
 };
 
 const SingleCat = ({currentUser, cat, adoptCat, getSignIn, logout}) => {
-
-  const [thisCat, setCat] = useState('');
-
-  useEffect(() => {
-    setCat(cat)
-    console.log(thisCat)
-  }, [])
 
   return(
   <motion.div initial='initial' animate='animate' exit={{ opacity: 0 }}>

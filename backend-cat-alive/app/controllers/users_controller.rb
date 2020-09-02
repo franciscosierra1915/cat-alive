@@ -35,16 +35,16 @@ class UsersController < ApplicationController
         user = User.find(params[:id])
     end
 
-    def define_current_user
-        if params[:id]
-            @current_user = User.find(params[:id])
-        else
-            @current_user = User.new
-        end
-    end
+    # def define_current_user
+    #     if params[:id]
+    #         @current_user = User.find(params[:id])
+    #     else
+    #         @current_user = User.new
+    #     end
+    # end
     
-    def current_user
-        @current_user
-    end
+    # def current_user
+    #     @current_user
+    # end
 
 end
