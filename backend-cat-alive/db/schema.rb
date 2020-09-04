@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_215055) do
   create_table "cats", force: :cascade do |t|
     t.integer "petfinder_id"
     t.string "name"
+    t.string "photo"
     t.string "age"
     t.string "description"
     t.string "status"

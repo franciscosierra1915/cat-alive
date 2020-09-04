@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import noPhoto from '../images/no-photo-available-small.png';
 import LoginForAccess from '../components/login-for-access';
+import axios from "axios";
+import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
 
 let easing = [0.6, -0.05, 0.01, 0.99];
 
@@ -30,7 +32,44 @@ const fadeInUp = {
   }
 };
 
+const libraries = ["places"];
+const mapContainerStyle = {
+  height: "30vh",
+  width: "30vw",
+};
+
 const SingleCat = ({currentUser, cat, adoptCat, getSignIn, logout}) => {
+
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: 'AIzaSyAhLNb9-FifzWU0NWbWJ21iUNrp7pM9yXo',
+    libraries,
+  });
+
+  // const [catAddress, setcatAddress] = useState(cat.contact.address.address1);
+  const catAddress = cat.contact.address.address1;
+  const [catLat, setCatLat] = useState('');
+  const [catLng, setCatLng] = useState('');
+
+  useEffect(() => {
+
+    axios.get(`https://maps.googleapis.com/maps/api/geocode/json`, {
+      params:{
+        address:catAddress,
+        key: 'AIzaSyAhLNb9-FifzWU0NWbWJ21iUNrp7pM9yXo',
+      }
+    })
+    .then(function(response){
+      setCatLat(response.data.results[0].geometry.location.lat)
+      setCatLng(response.data.results[0].geometry.location.lng)
+      console.log(response)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  }, [])
+
+  if (loadError) return "Error";
+  if (!isLoaded) return "Loading...";
 
   return(
   <motion.div initial='initial' animate='animate' exit={{ opacity: 0 }}>
@@ -78,13 +117,15 @@ const SingleCat = ({currentUser, cat, adoptCat, getSignIn, logout}) => {
               <span>{cat.size ? `Size: ${cat.size}` : null}</span>
             </motion.div>
             <motion.div variants={fadeInUp} className='qty-price'>
-              {/* <div className='qty'>
-                <div className='minus'>-</div>
-                <div className='amount'>1</div>
-                <div className='add'>+</div>
-              </div> */}
               <span className='price'>{cat.status ? `Status: ${cat.status}` : null}</span>
             </motion.div>
+            <GoogleMap
+              id="map"
+              mapContainerStyle={mapContainerStyle}
+              zoom={15}
+              center={{ lat: catLat ? catLat : null, lng: catLng ? catLng : null}}>
+                <Marker position={{ lat: catLat ? catLat : null, lng: catLng ? catLng : null}}/>
+            </GoogleMap>
             <motion.div variants={fadeInUp} className='btn-row'>
               <button className='add-to-cart' onClick={() => adoptCat(cat)}>{currentUser ? `Adopt` : <LoginForAccess getSignIn={getSignIn} currentUser={currentUser} logout={logout}/>}</button>
               <button className='subscribe'>Foster</button>

@@ -28,7 +28,7 @@ class CatsController < ApplicationController
     private 
 
     def cat_params 
-        params.require(:cat).permit(:petfinder_id, :name, :age, :description, :status, :size, :gender, :petfinder_url, :shelter_id, :user_id, :vet_id)
+        params.require(:cat).permit(:petfinder_id, :name, :photo, :age, :description, :status, :size, :gender, :petfinder_url, :shelter_id, :user_id, :vet_id)
     end
 
     def find_cat

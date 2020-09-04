@@ -5,28 +5,16 @@ import { Button, Header, Image, Modal } from 'semantic-ui-react';
 import FadeIn from 'react-fade-in';
 
 
-function ModalExampleModal({ getSignIn, currentUser, logout }) {
+function ModalExampleModal({ Signup }) {
   const [open, setOpen] = React.useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     let form = e.currentTarget
-    getSignIn(e)
+    Signup(e)
     form.reset()
     setOpen(false)
   }
-
-  const handleLogOut= () => (
-    fetch('http://localhost:3000/logout', {
-        credentials: 'include',
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(() => logout())
-)
-
 
   return (
     <Modal
@@ -34,42 +22,24 @@ function ModalExampleModal({ getSignIn, currentUser, logout }) {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<span>Foster</span>}
+      trigger={<span>Signup</span>}
     >
       <FadeIn>
-      <Modal.Header id='title-login'>Foster Login</Modal.Header>
+      <Modal.Header id='title-login'>Signup</Modal.Header>
       <Modal.Content image>
         <Image size='medium' src={LoginLogo} wrapped />
         <form onSubmit={handleSubmit}>
           <input className='login-name' type='text' name='name' placeholder='Enter your name'></input>
           <input className='login-email' type='email' name='email' placeholder='Enter your email'></input>
           <input className='login-password' type='password' name='password' placeholder='Enter your password'></input>
-          <input className='login-submit' type='submit' value='Login'></input>
+          <input className='login-submit' type='submit' value='Signup'></input>
         </form>
       </Modal.Content>
       <Modal.Actions>
         <Button color='black' onClick={() => setOpen(false)}>
           Go back
         </Button>
-        {currentUser ?
-        <Button
-        content="Logout"
-        labelPosition='right'
-        icon='checkmark'
-        onClick={handleLogOut}
-        positive
-        />
-        :
-        <Link to={`/cat-alive`}>
-        <Button
-        content="See new cats"
-        labelPosition='right'
-        icon='checkmark'
-        onClick={() => setOpen(false)}
-        positive
-        />
-        </Link>
-        }
+        <Link to={`/cat-alive`}><Button content="See new cats" labelPosition='right' icon='checkmark' onClick={() => setOpen(false)} positive/></Link>
       </Modal.Actions>
       </FadeIn>
     </Modal>

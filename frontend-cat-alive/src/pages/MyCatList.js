@@ -87,9 +87,9 @@ function CatList(props) {
           {props.cats ? props.cats.map((cat, index) => (
             <>
               <div key={cat.id} className="img-container">
-              <img src={noPhoto} alt={`cat ${index}`}/>
+              <img src={cat.photo ? cat.photo : noPhoto} alt={`cat ${index}`}/>
               </div>
-              <h2 onClick={() => props.displaySingleCat(cat)}>
+              <h2 onClick={() => props.displayMySingleCat(cat)}>
               {cat.name}
               </h2>
             </>

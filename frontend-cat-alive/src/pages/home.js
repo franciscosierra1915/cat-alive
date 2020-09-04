@@ -9,7 +9,7 @@ const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
 
 
 
-const Home = ({ imageDetails, image, currentUser, getSignIn, logout }) => {
+const Home = ({ imageDetails, image, currentUser, getSignIn, Signup, logout }) => {
 
   return(
   <>
@@ -53,7 +53,7 @@ const Home = ({ imageDetails, image, currentUser, getSignIn, logout }) => {
               className='information'>
               <div className='title'>{<Login currentUser={currentUser} getSignIn={getSignIn} logout={logout}/>}</div>
               <div className='location'>
-                <span>{<LoginFoster currentUser={currentUser} getSignIn={getSignIn} logout={logout}/>}</span>
+                <span>{currentUser ? <Link to={`/cat-alive`}>Foster</Link> : <LoginFoster Signup={Signup}/>}</span>
                 <span>Donate</span>
               </div>
             </motion.div>

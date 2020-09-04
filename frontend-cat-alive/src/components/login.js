@@ -35,15 +35,15 @@ function ModalExampleModal({ getSignIn, currentUser, logout }) {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<div className='title'>Adopt</div>}
+      trigger={<div className='title'>Login</div>}
     >
       <FadeIn>
-      <Modal.Header id='title-login'>Adopter Login</Modal.Header>
+      <Modal.Header id='title-login'>Login</Modal.Header>
       <Modal.Content image>
         <Image size='medium' src={LoginLogo} wrapped />
         <form onSubmit={handleSubmit}>
           <input className='login-name' type='text' name='name' placeholder='Enter your name'></input>
-          <input className='login-email' type='email' name='email' placeholder='Enter your email'></input>
+          {/* <input className='login-email' type='email' name='email' placeholder='Enter your email'></input> */}
           <input className='login-password' type='password' name='password' placeholder='Enter your password'></input>
           <input className='login-submit' type='submit' value='Login'></input>
         </form>
