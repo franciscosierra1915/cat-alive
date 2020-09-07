@@ -44,7 +44,7 @@ const mapContainerStyle = {
 const SingleCat = ({currentUser, cat, adoptCat, getSignIn, logout, fosterCat}) => {
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyAhLNb9-FifzWU0NWbWJ21iUNrp7pM9yXo',
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
     libraries,
   });
 
@@ -57,7 +57,7 @@ const SingleCat = ({currentUser, cat, adoptCat, getSignIn, logout, fosterCat}) =
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json`, {
       params:{
         address:catAddress,
-        key: 'AIzaSyAhLNb9-FifzWU0NWbWJ21iUNrp7pM9yXo',
+        key: process.env.REACT_APP_GOOGLE_API_KEY,
       }
     })
     .then(function(response){

@@ -16,6 +16,9 @@ import Header from "./components/header";
 //Styles
 import "./App.scss";
 
+const petfinderAPIKEY = process.env.REACT_APP_PETFINDER_API_KEY;
+const petfinderAPISECRET = process.env.REACT_APP_PETFINDER_SECRET;
+
 function App() {
   let history = useHistory();
   
@@ -90,7 +93,7 @@ function App() {
   useEffect(() => {
     async function fetchToken() {
       let response = await fetch("https://api.petfinder.com/v2/oauth2/token", {
-        body: "grant_type=client_credentials&client_id=jMnaf5a9J9EDqQVK6V7QelV93MshQsfwB2yNLCvGj1ZeSIL90R&client_secret=lRPuPyBzCKqR6juid6hAR8EEIwUReytjrHxHUs87",
+        body: `grant_type=client_credentials&client_id=${petfinderAPIKEY}&client_secret=${petfinderAPISECRET}`,
         headers: { "Content-Type": "application/x-www-form-urlencoded"},
         method: "POST"});
         response = await response.json()
@@ -101,7 +104,7 @@ function App() {
 
   useEffect(() => {
     async function fetchCats() {
-      let response = await fetch(`https://api.petfinder.com/v2/animals?type=cat&page=2&location=${location}`, {headers: { Authorization: `Bearer ${token}`}});
+      let response = await fetch(`https://api.petfinder.com/v2/animals?type=cat&page=2&location=${location}&distance=50`, {headers: { Authorization: `Bearer ${token}`}});
       response = await response.json()
       setCats(response.animals)
       history.push('/cat-list')
