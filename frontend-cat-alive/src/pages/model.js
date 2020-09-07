@@ -164,7 +164,7 @@ const Model = ({ imageDetails, getZip }) => {
           <Searchbar>
           <div className='search-container'>
            <form onSubmit={e => handleSubmit(e)}>
-           <img src={searchIcon} alt="searchIcon"/>
+           <img src={searchIcon} alt="searchIcon" className='search-icon'/>
            <input name="location" placeholder="Enter ZIP" type="text" className='input-text'/>
            <input type='submit'className='input-submit'/>
            </form>

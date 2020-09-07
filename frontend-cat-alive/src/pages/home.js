@@ -51,9 +51,9 @@ const Home = ({ imageDetails, image, currentUser, getSignIn, Signup, logout }) =
               exit={{ opacity: 0 }}
               transition={transition}
               className='information'>
-              <div className='title'>{<Login currentUser={currentUser} getSignIn={getSignIn} logout={logout}/>}</div>
+              <div className='title'>{currentUser ? <Link to={`/cat-alive`} style={{ textDecoration: 'none', color: '#21496c' }} >Adopt</Link> : <Login getSignIn={getSignIn}/>}</div>
               <div className='location'>
-                <span>{currentUser ? <Link to={`/cat-alive`}>Foster</Link> : <LoginFoster Signup={Signup}/>}</span>
+                <span id='foster-home'>{currentUser ? <Link to={`/cat-alive`} style={{ textDecoration: 'none', color: '#21496c' }} >Foster</Link> : <LoginFoster Signup={Signup}/>}</span>
                 <span>Donate</span>
               </div>
             </motion.div>

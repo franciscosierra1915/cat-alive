@@ -9,7 +9,7 @@ const Header = (props) => {
           <div className='logo'>
           <img className='logo-img' src={logo} alt="logo" onClick={() => props.redirectHome()}/>
           </div>
-          <div className='menu'>{<MenuButton getSignIn={props.getSignIn} logout={props.logout} currentUser={props.currentUser}/>}</div>
+          <div className='menu'>{<MenuButton getSignIn={props.getSignIn} logout={props.logout} currentUser={props.currentUser} Signup={props.Signup} redirectHome={props.redirectHome}/>}</div>
         </div>
       </div>
     </header>

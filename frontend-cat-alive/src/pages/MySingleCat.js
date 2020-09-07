@@ -63,9 +63,9 @@ const MySingleCat = ({currentUser, cat}) => {
         </motion.div>
         <div className='product-details'>
           <motion.div variants={stagger} className='inner'>
-            <Link to='/my-cat-list'>
+            <Link to='/my-cat-list' style={{ textDecoration: 'none', color: '#21496c' }}>
               <motion.div variants={fadeInUp}>
-                <div className='go-back'>Back to my cats</div>
+                <div id='go-back-profile'>Back to my cats</div>
               </motion.div>
             </Link>
             <motion.div variants={fadeInUp}>

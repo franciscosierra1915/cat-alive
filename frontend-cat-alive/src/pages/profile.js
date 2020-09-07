@@ -50,10 +50,9 @@ const Profile = ({ imageDetails, image }) => {
               exit={{ opacity: 0 }}
               transition={transition}
               className='information'>
-              <Link to={`/my-cat-list`} style={{ textDecoration: 'none', color: '#21496c' }}><div className='title'>My cats</div></Link>
+              <Link to={`/my-cat-list`} style={{ textDecoration: 'none', color: '#21496c' }}><div className='title'>My Cats</div></Link>
               <div className='location'>
-                <span>My vets</span>
-                {/* <span>My shleters</span> */}
+                <Link to={`/my-foster-list`} style={{ textDecoration: 'none', color: '#21496c' }}><span className='my-fosters'>My fosters</span></Link>
               </div>
             </motion.div>
           </div>

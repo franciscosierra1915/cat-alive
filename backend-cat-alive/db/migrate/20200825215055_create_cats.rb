@@ -10,6 +10,8 @@ class CreateCats < ActiveRecord::Migration[6.0]
       t.string :size
       t.string :gender
       t.string :petfinder_url
+      t.boolean :fostered
+      t.boolean :adopted
       t.references :shelter, null: true, foreign_key: true
       t.references :user, null: true, foreign_key: true
       t.references :vet, null: true, foreign_key: true

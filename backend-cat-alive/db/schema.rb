@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2020_08_25_215055) do
     t.string "size"
     t.string "gender"
     t.string "petfinder_url"
+    t.boolean "fostered"
+    t.boolean "adopted"
     t.integer "shelter_id"
     t.integer "user_id"
     t.integer "vet_id"

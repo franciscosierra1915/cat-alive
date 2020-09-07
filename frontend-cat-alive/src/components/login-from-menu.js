@@ -4,7 +4,7 @@ import { Button, Header, Image, Modal } from 'semantic-ui-react';
 import FadeIn from 'react-fade-in';
 
 
-function ModalExampleModal({ getSignIn, currentUser, logout }) {
+function ModalExampleModal({ getSignIn }) {
   const [open, setOpen] = React.useState(false)
 
   const handleSubmit = (e) => {
@@ -14,18 +14,6 @@ function ModalExampleModal({ getSignIn, currentUser, logout }) {
     form.reset()
     setOpen(false)
   }
-
-  const handleLogOut= () => (
-    fetch('http://localhost:3000/logout', {
-        credentials: 'include',
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(() => logout())
-)
-
 
   return (
     <Modal
@@ -41,7 +29,6 @@ function ModalExampleModal({ getSignIn, currentUser, logout }) {
         <Image size='medium' src={LoginLogo} wrapped />
         <form onSubmit={handleSubmit}>
           <input className='login-name' type='text' name='name' placeholder='Enter your name'></input>
-          <input className='login-email' type='email' name='email' placeholder='Enter your email'></input>
           <input className='login-password' type='password' name='password' placeholder='Enter your password'></input>
           <input className='login-submit' type='submit' value='Login'></input>
         </form>
@@ -50,15 +37,6 @@ function ModalExampleModal({ getSignIn, currentUser, logout }) {
         <Button color='black' onClick={() => setOpen(false)}>
           Go back
         </Button>
-        {currentUser ?
-        <Button
-        content="Logout"
-        labelPosition='right'
-        icon='checkmark'
-        onClick={handleLogOut}
-        positive
-        />
-        :
         <Button
         content="See new cats"
         labelPosition='right'
@@ -66,7 +44,6 @@ function ModalExampleModal({ getSignIn, currentUser, logout }) {
         onClick={() => setOpen(false)}
         positive
         />
-        }
       </Modal.Actions>
       </FadeIn>
     </Modal>

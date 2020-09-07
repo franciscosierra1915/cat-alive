@@ -5,6 +5,9 @@ import noPhoto from '../images/no-photo-available-small.png';
 import LoginForAccess from '../components/login-for-access';
 import axios from "axios";
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from "@react-google-maps/api";
+import emailIcon from '../images/email.png'
+import addressIcon from '../images/address-icon-2.png'
+
 
 let easing = [0.6, -0.05, 0.01, 0.99];
 
@@ -34,18 +37,17 @@ const fadeInUp = {
 
 const libraries = ["places"];
 const mapContainerStyle = {
-  height: "30vh",
-  width: "30vw",
+  height: "20vh",
+  width: "40vw",
 };
 
-const SingleCat = ({currentUser, cat, adoptCat, getSignIn, logout}) => {
+const SingleCat = ({currentUser, cat, adoptCat, getSignIn, logout, fosterCat}) => {
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: 'AIzaSyAhLNb9-FifzWU0NWbWJ21iUNrp7pM9yXo',
     libraries,
   });
 
-  // const [catAddress, setcatAddress] = useState(cat.contact.address.address1);
   const catAddress = cat.contact.address.address1;
   const [catLat, setCatLat] = useState('');
   const [catLng, setCatLng] = useState('');
@@ -102,22 +104,21 @@ const SingleCat = ({currentUser, cat, adoptCat, getSignIn, logout}) => {
         </motion.div>
         <div className='product-details'>
           <motion.div variants={stagger} className='inner'>
-            <Link to='/cat-list'>
               <motion.div variants={fadeInUp}>
-                <div className='go-back'>Back to list</div>
+              <Link to='/cat-list'><div className='go-back'>Back to list</div></Link>
               </motion.div>
-            </Link>
+            <motion.h1 className='single-cat-name' variants={fadeInUp}>{cat.name}</motion.h1>
             <motion.div variants={fadeInUp}>
               <span className='category'>{cat.age ? `Age: ${cat.age}` : null}</span>
             </motion.div>
-            <motion.h1 className='single-cat-name' variants={fadeInUp}>{cat.name}</motion.h1>
             <motion.p variants={fadeInUp}>{cat.description ? cat.description : `No description` }</motion.p>
             <motion.div variants={fadeInUp} className='additonals'>
               <span>{cat.gender ? `Gender: ${cat.gender}` : null}</span>
               <span>{cat.size ? `Size: ${cat.size}` : null}</span>
             </motion.div>
             <motion.div variants={fadeInUp} className='qty-price'>
-              <span className='price'>{cat.status ? `Status: ${cat.status}` : null}</span>
+              <span className='price'>{cat.contact.email ? <div><img src={emailIcon} alt="emailIcon" className='email-icon'/>{cat.contact.email}</div> : null}</span>
+              <span className='contact-cat'><img src={addressIcon} alt="emailIcon" className='address-icon'/>{cat.contact.address.address1}, {cat.contact.address.city}, {cat.contact.address.state}</span>
             </motion.div>
             <GoogleMap
               id="map"
@@ -128,7 +129,7 @@ const SingleCat = ({currentUser, cat, adoptCat, getSignIn, logout}) => {
             </GoogleMap>
             <motion.div variants={fadeInUp} className='btn-row'>
               <button className='add-to-cart' onClick={() => adoptCat(cat)}>{currentUser ? `Adopt` : <LoginForAccess getSignIn={getSignIn} currentUser={currentUser} logout={logout}/>}</button>
-              <button className='subscribe'>Foster</button>
+              <button className='subscribe'onClick={() => fosterCat(cat)}>{currentUser ? `Foster` : <LoginForAccess getSignIn={getSignIn} currentUser={currentUser} logout={logout}/>}</button>
             </motion.div>
           </motion.div>
         </div>

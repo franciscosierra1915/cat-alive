@@ -8,6 +8,7 @@ import Profile from "./pages/profile";
 import Model from "./pages/model";
 import CatList from './pages/CatList';
 import MyCatList from './pages/MyCatList';
+import MyFosterList from './pages/MyFosterList';
 import SingleCat from './pages/SingleCat';
 import MySingleCat from './pages/MySingleCat';
 //components
@@ -82,9 +83,7 @@ function App() {
       credentials: 'include'
     })
     .then(res => res.json())
-    .then(user => {
-      setUserCats(user.cats)
-    })
+    .then(user => {setUserCats(user.cats)})
   }, [currentUser]);
 
  
@@ -151,8 +150,43 @@ function App() {
             size: catToBeAdopted.size,
             gender: catToBeAdopted.gender,
             petfinder_url: catToBeAdopted.url,
+            fostered: false, 
+            adopted: true,
             shelter_id: 1,
-            vet_id: null,
+            vet_id: 1,
+            user_id: currentUser.id
+        })
+    }
+    fetch('http://localhost:3000/cats', objectConfig)
+    .then(res => res.json())
+    .then(newAdoptedCat => setUserCats(userCats => [...userCats, newAdoptedCat]))
+    } else {
+      console.log('Sorry, please sign in')
+    }
+  }
+
+  const fosterCat = (catToBeAdopted) => {
+    if (currentUser !== null) {
+      let objectConfig = {
+        credentials: 'include',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            petfinder_id: catToBeAdopted.id,
+            name: catToBeAdopted.name,
+            photo: catToBeAdopted.photos[0].full,
+            age: catToBeAdopted.age,
+            description: catToBeAdopted.description,
+            status: catToBeAdopted.status,
+            size: catToBeAdopted.size,
+            gender: catToBeAdopted.gender,
+            petfinder_url: catToBeAdopted.url,
+            fostered: true, 
+            adopted: false,
+            shelter_id: 1,
+            vet_id: 1,
             user_id: currentUser.id
         })
     }
@@ -166,7 +200,7 @@ function App() {
 
     return (
       <div>
-        <Header redirectHome={redirectHome} currentUser={currentUser} getSignIn={e => signIn(e)} logout={() => setCurrentUser(null)}/>
+        <Header redirectHome={redirectHome} currentUser={currentUser} getSignIn={e => signIn(e)} logout={() => setCurrentUser(null)} Signup={e => Signup(e)}/>
         <Route
           render={({ location }) => (
             <AnimatePresence initial={false} exitBeforeEnter>
@@ -175,8 +209,9 @@ function App() {
                 <Route exact path='/profile' render={() => <Profile imageDetails={imageDetails}/>}/>
                 <Route exact path='/cat-alive' render={() => <Model currentUser={currentUser} imageDetails={imageDetails} getZip={e => getZip(e)}/>}/>
                 <Route exact path='/cat-list' render={() => <CatList currentUser={currentUser} cats={cats} redirectHome={redirectHome} displaySingleCat={displaySingleCat}/>}/>
-                <Route exact path='/my-cat-list' render={() => <MyCatList currentUser={currentUser} cats={userCats ? userCats : null} redirectHome={redirectHome} displayMySingleCat={displayMySingleCat}/>}/>
-                <Route exact path='/single-cat' render={() => <SingleCat currentUser={currentUser} cat={clickedSingleCat} adoptCat={adoptCat} getSignIn={e => signIn(e)} logout={() => setCurrentUser(null)}/>}/>
+                <Route exact path='/my-cat-list' render={() => <MyCatList currentUser={currentUser} cats={userCats ? userCats.filter((cat) => cat.adopted) : null} redirectHome={redirectHome} displayMySingleCat={displayMySingleCat}/>}/>
+                <Route exact path='/my-foster-list' render={() => <MyFosterList currentUser={currentUser} cats={userCats ? userCats.filter((cat) => cat.fostered) : null} redirectHome={redirectHome} displayMySingleCat={displayMySingleCat}/>}/>
+                <Route exact path='/single-cat' render={() => <SingleCat currentUser={currentUser} cat={clickedSingleCat} adoptCat={adoptCat} fosterCat={fosterCat} getSignIn={e => signIn(e)} logout={() => setCurrentUser(null)}/>}/>
                 <Route exact path='/my-single-cat' render={() => <MySingleCat currentUser={currentUser} cat={clickedSingleCat} />}/>
               </Switch>
             </AnimatePresence>

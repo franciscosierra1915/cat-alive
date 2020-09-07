@@ -250,7 +250,7 @@ main {
           text-transform: uppercase;
           .location {
             span:nth-child(2) {
-              margin-left: 165px;
+              margin-left: 10.5rem;
             }
           }
         }
@@ -349,7 +349,7 @@ main {
 
 .search-container {
   margin: 24px;
-  margin-left: 570px;
+  margin-left: 670px;
   margin-top: -350px;
   .input-submit {
     height: 88px;
@@ -379,6 +379,9 @@ main {
       color: grey;
     }
   }
+  .search-icon{
+    margin-left: 100px;
+  }
 }
 
 .fullscreen {
@@ -407,25 +410,29 @@ main {
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      text-shadow: 0 0 1px #b85601;
       .inner {
         width: 780px;
         position: relative;
         .go-back {
+          font-size: 1.4rem;
           cursor: pointer;
           color: #282828;
           text-decoration: none;
           text-align: left;
           position: absolute;
-          top: -124px;
+          top: -14px;
           left: 0;
+          text-shadow: 0 0 1px #b8a901;
         }
         .category {
           font-size: 2rem;
-          color: #263684;
+          color: #1570c0;
           font-weight: 500;
           text-align: center;
           width: 100%;
           margin-bottom: 32px;
+          text-shadow: 0 0 5px #b8a901;
         }
         .single-cat-name{
           font-size: 6rem;
@@ -481,9 +488,23 @@ main {
           .price {
             word-spacing: 5px;
             letter-spacing: 3px;
-            color: #564f0b;
+            color: #b7a100;
             font-weight: 700;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            margin-top: -20px;
+            text-shadow: 0 0 1px #000000;
+          }
+          .contact-cat{
+            word-spacing: 5px;
+            letter-spacing: 3px;
+            color: #00609b;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-left: 45px;
+            margin-bottom: 15px;
+            margin-top: -20px;
+            text-shadow: 0 0 1.5px #000000;
           }
         }
 
@@ -520,3 +541,20 @@ main {
     }
   }
 }
+#map {
+  border-radius: 30px;
+}
+#go-back-profile{
+  margin-bottom: 50px;
+  font-size: 1.5rem;
+}
+.email-icon{
+  width: 35px;
+  height: 35px;
+}
+.address-icon{
+  width: 37px;
+  height: 37px;
+  margin-right: 20px;
+}
+
