@@ -10,6 +10,7 @@ import CatList from './pages/CatList';
 import MyCatList from './pages/MyCatList';
 import MyFosterList from './pages/MyFosterList';
 import SingleCat from './pages/SingleCat';
+import SingleShelter from './pages/SingleShelter';
 import MySingleCat from './pages/MySingleCat';
 //components
 import Header from "./components/header";
@@ -31,6 +32,7 @@ function App() {
   const [shelterLocation, setShelterLocation] = useState('');
   const [shelters, setShelters] = useState('');
   const [clickedSingleCat, setClickedCat] = useState('');
+  const [clickedSingleShelter, setClickedShelter] = useState('');
   const [userCats, setUserCats] = useState('')
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -124,7 +126,7 @@ function App() {
       response = await response.json()
       console.log(response)
       setShelters(response.organizations)
-      history.push('/hamburger')
+      history.push('/shelters-list')
     }
     fetchShelter();
 
@@ -149,6 +151,11 @@ function App() {
   const displaySingleCat = (clickedCat) => {
     setClickedCat(clickedCat);
     history.push('/single-cat')
+  }
+
+  const displaySingleShelter = (clickedShelter) => {
+    setClickedShelter(clickedShelter);
+    history.push('/single-shelter')
   }
   const displayMySingleCat = (clickedCat) => {
     setClickedCat(clickedCat);
@@ -183,6 +190,7 @@ function App() {
     fetch('http://localhost:3000/cats', objectConfig)
     .then(res => res.json())
     .then(newAdoptedCat => setUserCats(userCats => [...userCats, newAdoptedCat]))
+    history.push('/my-cat-list')
     } else {
       console.log('Sorry, please sign in')
     }
@@ -216,6 +224,7 @@ function App() {
     fetch('http://localhost:3000/cats', objectConfig)
     .then(res => res.json())
     .then(newAdoptedCat => setUserCats(userCats => [...userCats, newAdoptedCat]))
+    history.push('/my-foster-list')
     } else {
       console.log('Sorry, please sign in')
     }
@@ -237,7 +246,8 @@ function App() {
                 <Route exact path='/single-cat' render={() => <SingleCat currentUser={currentUser} cat={clickedSingleCat} adoptCat={adoptCat} fosterCat={fosterCat} getSignIn={e => signIn(e)} logout={() => setCurrentUser(null)}/>}/>
                 <Route exact path='/my-single-cat' render={() => <MySingleCat currentUser={currentUser} cat={clickedSingleCat} />}/>
                 <Route exact path='/search-organizations' render={() => <SearchOrganizations getShelterZip={e => getShelterZip(e)}/>}/>
-                <Route exact path='/hamburger' render={() => <Hamburger redirectHome={redirectHome} shelters={shelters}/>}/>
+                <Route exact path='/shelters-list' render={() => <Hamburger redirectHome={redirectHome} shelters={shelters} displaySingleShelter={displaySingleShelter} />}/>
+                <Route exact path='/single-shelter' render={() => <SingleShelter shelter={clickedSingleShelter}/>}/>
               </Switch>
             </AnimatePresence>
           )}

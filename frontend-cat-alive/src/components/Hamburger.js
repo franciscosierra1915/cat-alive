@@ -32,7 +32,7 @@ const cities = [
 
 const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
 
-const Hamburger = ({ redirectHome, shelters}) => {
+const Hamburger = ({ redirectHome, shelters, displaySingleShelter}) => {
   const [state, setState] = useState({
     initial: null,
     clicked: true,
@@ -123,25 +123,30 @@ const Hamburger = ({ redirectHome, shelters}) => {
                       <ul onMouseEnter={e => handleHover(e)} onMouseOut={e => handleHoverExit(e)}>
                         <li onMouseEnter={() => handleCity(shelters[0].photos.length !== 0 ? shelters[0].photos[0].full : noPhoto, cityBackground)}
                             onMouseOut={() => handleCityReturn(cityBackground)}
+                            onClick={() => displaySingleShelter(shelters[0])}
                             ref={el => (line1 = el)}>
                             {shelters[0].name}
                         </li>
                         <li onMouseEnter={() => handleCity(shelters[1].photos.length !== 0 ? shelters[1].photos[0].full : noPhoto, cityBackground)}
                             onMouseOut={() => handleCityReturn(cityBackground)}
+                            onClick={() => displaySingleShelter(shelters[1])}
                             ref={el => (line2 = el)}>
                             {shelters[1].name}
                         </li>
                         <li onMouseEnter={() => handleCity(shelters[2].photos.length !== 0 ? shelters[2].photos[0].full : noPhoto, cityBackground)}
                             onMouseOut={() => handleCityReturn(cityBackground)}
+                            onClick={() => displaySingleShelter(shelters[2])}
                             ref={el => (line3 = el)}>
                             {shelters[2].name}
                         </li>
                         <li onMouseEnter={() => handleCity(shelters[3].photos.length !== 0 ? shelters[3].photos[0].full : noPhoto, cityBackground)}
-                            onMouseOut={() => handleCityReturn(cityBackground)}>
+                            onMouseOut={() => handleCityReturn(cityBackground)}
+                            onClick={() => displaySingleShelter(shelters[3])}>
                             {shelters[3].name}
                         </li>
                         <li onMouseEnter={() => handleCity(shelters[4].photos.length !== 0 ? shelters[4].photos[0].full : noPhoto, cityBackground)}
-                            onMouseOut={() => handleCityReturn(cityBackground)}>
+                            onMouseOut={() => handleCityReturn(cityBackground)}
+                            onClick={() => displaySingleShelter(shelters[4])}>
                             {shelters[4].name}
                         </li>
                       </ul>
@@ -152,7 +157,7 @@ const Hamburger = ({ redirectHome, shelters}) => {
                       </p>
                     </div>
                     <div className='locations'>
-                      Our Locations:
+                      Cat Alive! Locations:
                       {/* Returning the list of cities */}
                       {cities.map(el => (
                         <span
