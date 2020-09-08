@@ -4,6 +4,7 @@ import { motion, useViewportScroll, useTransform } from "framer-motion";
 import styled from 'styled-components';
 import { useHistory } from "react-router";
 
+
 //Elements
 import {Searchbar} from '../styles/elements'
 
@@ -65,7 +66,6 @@ const Model = ({ imageDetails, getZip }) => {
     let form = e.currentTarget 
     getZip(e.target.location.value)
     form.reset()
-    // history.push("/cat-list");
   }
 
   return (
@@ -91,7 +91,7 @@ const Model = ({ imageDetails, getZip }) => {
                 <span>VETS &</span>
                 <span>DOCTORS</span>
               </div>
-              <div className='mua'>Organizations & Shelters</div>
+              <Link to={`/search-organizations`} style={{ textDecoration: 'none', color: '#21496c' }}><div className='mua'>Shelters & Organizaitons</div></Link>
             </motion.div>
             <motion.div className='model'>
               <motion.span className='first' variants={firstName}>

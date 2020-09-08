@@ -10,12 +10,6 @@ class Search extends Component {
 
   setLocation = (e) => this.setState({ location: e.target.value })
 
-  // handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   let form = e.currentTarget
-  //   form.reset()
-  // }
-
   render() {
     return (
       <div className="search-container">

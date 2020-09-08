@@ -13,6 +13,9 @@ import SingleCat from './pages/SingleCat';
 import MySingleCat from './pages/MySingleCat';
 //components
 import Header from "./components/header";
+import SearchOrganizations from './components/searchOrganizations';
+import Hamburger from './components/Hamburger';
+
 //Styles
 import "./App.scss";
 
@@ -25,6 +28,8 @@ function App() {
   const [token, setToken] = useState('');
   const [cats, setCats] = useState('');
   const [location, setLocation] = useState('');
+  const [shelterLocation, setShelterLocation] = useState('');
+  const [shelters, setShelters] = useState('');
   const [clickedSingleCat, setClickedCat] = useState('');
   const [userCats, setUserCats] = useState('')
   const [currentUser, setCurrentUser] = useState(null);
@@ -104,7 +109,7 @@ function App() {
 
   useEffect(() => {
     async function fetchCats() {
-      let response = await fetch(`https://api.petfinder.com/v2/animals?type=cat&page=2&location=${location}&distance=50`, {headers: { Authorization: `Bearer ${token}`}});
+      let response = await fetch(`https://api.petfinder.com/v2/animals?type=cat&page=2&location=${location}&distance=40`, {headers: { Authorization: `Bearer ${token}`}});
       response = await response.json()
       setCats(response.animals)
       history.push('/cat-list')
@@ -113,8 +118,23 @@ function App() {
 
   }, [location])
 
+  useEffect(() => {
+    async function fetchShelter() {
+      let response = await fetch(`https://api.petfinder.com/v2/organizations?location=${shelterLocation}&limit=5`, {headers: { Authorization: `Bearer ${token}`}});
+      response = await response.json()
+      console.log(response)
+      setShelters(response.organizations)
+      history.push('/hamburger')
+    }
+    fetchShelter();
+
+  }, [shelterLocation])
+
   const getZip = (zip) => {
     setLocation(zip)
+  }
+  const getShelterZip = (zip) => {
+    setShelterLocation(zip)
   }
 
   const imageDetails = {
@@ -216,6 +236,8 @@ function App() {
                 <Route exact path='/my-foster-list' render={() => <MyFosterList currentUser={currentUser} cats={userCats ? userCats.filter((cat) => cat.fostered) : null} redirectHome={redirectHome} displayMySingleCat={displayMySingleCat}/>}/>
                 <Route exact path='/single-cat' render={() => <SingleCat currentUser={currentUser} cat={clickedSingleCat} adoptCat={adoptCat} fosterCat={fosterCat} getSignIn={e => signIn(e)} logout={() => setCurrentUser(null)}/>}/>
                 <Route exact path='/my-single-cat' render={() => <MySingleCat currentUser={currentUser} cat={clickedSingleCat} />}/>
+                <Route exact path='/search-organizations' render={() => <SearchOrganizations getShelterZip={e => getShelterZip(e)}/>}/>
+                <Route exact path='/hamburger' render={() => <Hamburger redirectHome={redirectHome} shelters={shelters}/>}/>
               </Switch>
             </AnimatePresence>
           )}

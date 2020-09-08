@@ -1,6 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./CatList.scss";
 import { Link } from "react-router-dom";
+import { gsap } from "gsap";
+import {
+  staggerText,
+  staggerReveal,
+  fadeInUp,
+  handleHover,
+  handleHoverExit,
+  handleCityReturn,
+  handleCity,
+  staggerRevealClose
+} from "../components/Animations";
 
 import noPhoto from '../images/no-photo-available.png';
 import { motion, useViewportScroll, useTransform } from "framer-motion";
@@ -86,10 +97,15 @@ function CatList(props) {
         ref={scrollContainer}>
           {props.cats ? props.cats.map((cat, index) => (
             <>
-              <div key={cat.id} className="img-container">
+              <div
+              key={cat.id} 
+              className="img-container">
               <img src={cat.photos.length !== 0 ? cat.photos[0].full : noPhoto} alt={`cat ${index}`}/>
               </div>
-              <h2 onClick={() => props.displaySingleCat(cat)}>
+              <h2
+              onMouseEnter={e => handleHover(e)}
+              onMouseOut={e => handleHoverExit(e)} 
+              onClick={() => props.displaySingleCat(cat)}>
               {cat.name}
               </h2>
             </>

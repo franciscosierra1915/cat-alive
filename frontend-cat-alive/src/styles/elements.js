@@ -14,3 +14,19 @@ export const Searchbar = styled.div`
     height: 16px;
   }
 `
+
+export const SearchOrg = styled.div`
+  position: relative;
+  margin-left: -500px;
+  margin-top: 100px;
+  margin-right: 15px;
+  img {
+    position: relative;
+    top: 15px;
+    left: 40px;
+    transform: translateY(-50%);
+    z-index: 9;
+    width: 16px;
+    height: 16px;
+  }
+`

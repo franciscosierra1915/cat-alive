@@ -18,10 +18,12 @@
     "react-dom": "^16.13.1",
     "react-fade-in": "^1.1.0",
     "react-google-maps": "^9.4.5",
+    "react-gsap": "^2.2.1",
     "react-motion": "^0.5.2",
     "react-progressive-image": "^0.6.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-transition-group": "^4.4.1",
     "sass": "^1.26.10",
     "semantic-ui-react": "^1.2.1",
     "styled-components": "^5.1.1"
