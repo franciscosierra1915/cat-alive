@@ -52,6 +52,10 @@ const SingleCat = ({currentUser, cat, adoptCat, getSignIn, logout, fosterCat}) =
   const [catLat, setCatLat] = useState('');
   const [catLng, setCatLng] = useState('');
 
+  console.log(catAddress);
+  console.log(catLat);
+  console.log(catLng);
+
   useEffect(() => {
 
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json`, {

@@ -1,0 +1,9 @@
+Fonts used in this design:
+
+Font: Concert One
+Author: Johan Kallas
+Url: https://www.fontsquirrel.com/fonts/concert-one
+
+Font: Zing Rust
+Author: Fontfabric
+Url: https://www.fontsquirrel.com/fonts/zing-rust

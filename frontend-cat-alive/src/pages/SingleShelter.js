@@ -129,11 +129,11 @@ const SingleShelter = ({shelter}) => {
                 <Marker position={{ lat: shelterLat ? shelterLat : null, lng: shelterLng ? shelterLng : null}}/>
             </GoogleMap>
             <motion.div variants={fadeInUp} className='additonals'>
-              <span>{shelter.social_media.facebook ? <a href={shelter.social_media.facebook} className='facebook-icon'><img src={facebookIcon} alt="facebookIcon" className='facebook-icon'/></a> : null}</span>
-              <span>{shelter.social_media.instagram ? <a href={shelter.social_media.instagram} className='facebook-icon'><img src={instagramIcon} alt="facebookIcon" className='facebook-icon'/></a> : null}</span>
-              <span>{shelter.social_media.twitter ? <a href={shelter.social_media.twitter} className='facebook-icon'><img src={twitterIcon} alt="facebookIcon" className='facebook-icon'/></a> : null}</span>
-              <span>{shelter.social_media.youtube ? <a href={shelter.social_media.youtube} className='facebook-icon'><img src={youtubeIcon} alt="facebookIcon" className='facebook-icon'/></a> : null}</span>
-              <span>{shelter.website ? <a href={shelter.website} className='website-icon'><img src={websiteIcon} alt="websiteIcon" className='website-icon'/></a> : null}</span>
+              <span>{shelter.social_media.facebook ? <a href='#' className='facebook-icon'><img src={facebookIcon} alt="facebookIcon" className='facebook-icon' onClick={()=> window.open(`${shelter.social_media.facebook}`, "_blank")}/></a> : null}</span>
+              <span>{shelter.social_media.instagram ? <a href='#' className='facebook-icon'><img src={instagramIcon} alt="facebookIcon" className='facebook-icon' onClick={()=> window.open(`${shelter.social_media.instagram}`, "_blank")}/></a> : null}</span>
+              <span>{shelter.social_media.twitter ? <a href='#' className='facebook-icon'><img src={twitterIcon} alt="facebookIcon" className='facebook-icon' onClick={()=> window.open(`${shelter.social_media.twitter}`, "_blank")}/></a> : null}</span>
+              <span>{shelter.social_media.youtube ? <a href='#' className='facebook-icon'><img src={youtubeIcon} alt="facebookIcon" className='facebook-icon' onClick={()=> window.open(`${shelter.social_media.youtube}`, "_blank")}/></a> : null}</span>
+              <span>{shelter.website ? <a href='#'><img src={websiteIcon} alt="websiteIcon" className='website-icon' onClick={()=> window.open(`${shelter.website}`, "_blank")}/></a> : null}</span>
             </motion.div>
             <motion.div variants={fadeInUp} className='btn-row'>
             </motion.div>

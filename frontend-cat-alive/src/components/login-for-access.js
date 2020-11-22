@@ -30,8 +30,8 @@ function LoginForAcces({ getSignIn }) {
       <Modal.Content image>
         <Image size='medium' src={LoginLogo} wrapped />
         <form onSubmit={handleSubmit}>
-          <input className='login-name' type='text' name='name' placeholder='Enter your name'></input>
-          <input className='login-password' type='password' name='password' placeholder='Enter your password'></input>
+          <input autocomplete="off" className='login-name' type='text' name='name' placeholder='Enter your name'></input>
+          <input autocomplete="off" className='login-password' type='password' name='password' placeholder='Enter your password'></input>
           <input className='login-submit' type='submit' value='Login'></input>
         </form>
       </Modal.Content>

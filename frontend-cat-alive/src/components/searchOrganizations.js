@@ -27,7 +27,7 @@ const SearchOrganizations = ({image, getShelterZip}) => {
             <div className='search-container'>
               <form onSubmit={e => handleSubmit(e)}>
                 <img src={searchIcon} alt="searchIcon" className='search-icon'/>
-                  <input name="location" placeholder="Enter ZIP" type="text" className='input-text'/>
+                  <input name="location" placeholder="Enter ZIP" type="text" className='input-text' autocomplete="off"/>
                 <input type='submit'className='input-submit'/>
               </form>
             </div>

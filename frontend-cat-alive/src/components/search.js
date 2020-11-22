@@ -14,7 +14,7 @@ class Search extends Component {
     return (
       <div className="search-container">
         <form className="search">
-          <input onChange={this.setLocation} type="text" name="location" placeholder="Entenr ZIP" className="input-text"/>
+          <input onChange={this.setLocation} type="text" name="location" placeholder="Entenr ZIP" className="input-text" autocomplete="off"/>
           <input type="submit" name="submit" value="Find Cats" className="input-submit"/>
         </form>
       </div>

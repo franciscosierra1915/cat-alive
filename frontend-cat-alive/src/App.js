@@ -36,6 +36,8 @@ function App() {
   const [userCats, setUserCats] = useState('')
   const [currentUser, setCurrentUser] = useState(null);
 
+  console.log(cats)
+
 
   const signIn = (e) => {
     let objectConfig = {

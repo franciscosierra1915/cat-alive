@@ -18,7 +18,8 @@ import dallas from "../images/dallas.webp";
 import austin from "../images/austin.webp";
 import newyork from "../images/newyork.webp";
 import sanfrancisco from "../images/sanfrancisco.webp";
-import beijing from "../images/beijing.webp";
+// import beijing from "../images/beijing.webp";
+import houston from '../images/houston.jpg';
 
 import noPhoto from '../images/no-photo-available.png';
 
@@ -27,7 +28,7 @@ const cities = [
   { name: "Austin", image: austin },
   { name: "New York", image: newyork },
   { name: "San Francisco", image: sanfrancisco },
-  { name: "Beijing", image: beijing }
+  { name: 'Houston', image : houston }
 ];
 
 const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] };
